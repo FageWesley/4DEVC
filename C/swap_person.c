@@ -1,4 +1,4 @@
-#include "exercices.h"
+#include "books.h"
 #include <stdio.h>
 
 void eq_function() {
@@ -49,6 +49,9 @@ void generic_swap() {
 int compare_persons(void *p1, void *p2) {
     return ((Person *)p1)->age > ((Person *)p2)->age;
 }
+// Une autre façon de comparer serait par exemple de renvoyer
+// 1 si p1 est plus grand, -1 si p2 est plus grand et 0 si ils sont égaux.
+
 
 int main() {
     eq_function();
@@ -77,6 +80,22 @@ int main() {
     for (int i = 0; i < sizeof(people) / sizeof(Person); i++) {
         printf("%d ", people[i].age);
     }
+
+
+    // On peut éventuellement itérer sur les objets via leurs pointeurs
+    // Un peu comme un foreach en JS ou for elem in elems en Python :
+    for (Person *p = people; p < people + sizeof(people) / sizeof(Person); p++) {
+        printf("%d ", p->age);
+    }
+    // Ici p est un pointeur vers le début du tableau
+    // people + sizeof(people) / sizeof(Person) est également un pointeur, mais vers la fin du tableau
+    // On l'incrémente donc p de la taille d'un élément du tableau (p++) pointant alors vers le suivant
+    // et ce jusqu'à ce qu'il soit égal au pointeur vers la fin du tableau
+
+    // C'est à titre d'exemple et pour montrer le fonctionnement des équivalents en C++, JS etc
+    // Dans du code en production on évite souvent car un peu plus compliqué à lire / maintenir
+    // et peut donc être source d'erreurs.
+
     printf("\n");
 
     return 0;
