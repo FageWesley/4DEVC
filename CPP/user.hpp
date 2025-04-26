@@ -22,3 +22,6 @@ public:
 };
 
 #endif
+// Essayez d'être le plus consistant possible dans les noms de variables.
+// Si on part en mettant des _ devant les variables privées comme dans pwd.hpp
+// on le fait partout.
